@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "astferia-back"
+version = "0.1.0"
+description = ""
+authors = ["RoyalPandalfuul <61811141+RoyalPandalfuul@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

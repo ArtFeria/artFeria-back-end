@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "artferia-back"
+version = "0.1.0"
+description = ""
+authors = ["RoyalPandalfuul <61811141+RoyalPandalfuul@users.noreply.github.com>"]
+license = "GNU GENERAL PUBLIC LICENSE"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.*"
+fastapi = "^0.103.2"
+SQLAlchemy = "^2.0.21"
+alembic = "^1.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
