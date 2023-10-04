@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "artferia-back"
+name = "artferia"
 version = "0.1.0"
 description = ""
-authors = ["RoyalPandalfuul <61811141+RoyalPandalfuul@users.noreply.github.com>"]
+authors = ["RoyalPandalfuul <ga7w7arcanjo@gmail.com>"]
 license = "GNU GENERAL PUBLIC LICENSE"
 readme = "README.md"
 

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "astferia-back"
+name = "artferia"
 version = "0.1.0"
 description = ""
 authors = ["RoyalPandalfuul <61811141+RoyalPandalfuul@users.noreply.github.com>"]
