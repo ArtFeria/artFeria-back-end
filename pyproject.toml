@@ -3,7 +3,7 @@ name = "artferia"
 version = "0.1.0"
 description = ""
 authors = ["RoyalPandalfuul <ga7w7arcanjo@gmail.com>"]
-license = "GNU GENERAL PUBLIC LICENSE"
+license = "LICENSE"
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -11,6 +11,40 @@ python = "3.11.*"
 fastapi = "^0.103.2"
 SQLAlchemy = "^2.0.21"
 alembic = "^1.12.0"
+uvicorn = "^0.23.2"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+pytest-cov = "^4.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.12.0"
+blue = "^0.9.1"
+ruff = "^0.1.0"
+isort = "^5.12.0"
+
+
+[tool.ruff]
+line-length = 79
+exclude = ['.venv', 'migrations']
+
+[tool.isort]
+profile = "black"
+line_length = 79
+extend_skip = ['migrations']
+
+[tool.blue]
+extend-exclude = '(migrations/)'
+
+[tool.taskipy.tasks]
+lint = 'ruff . && blue --check . --diff'
+format = 'blue .  && isort .'
+run = 'uvicorn artferia.app:app --reload'
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=artferia -vv'
+post_test = 'coverage html'
 
 
 [build-system]
