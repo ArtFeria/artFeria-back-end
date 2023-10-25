@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from artferia.schemas import UserSchema, UserPublic
+from artferia.schemas import UserPublic, UserSchema
 
 router = APIRouter(prefix='/users', tags=['users'])
 
