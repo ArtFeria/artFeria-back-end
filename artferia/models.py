@@ -1,7 +1,6 @@
-from enum import Enum
+# from enum import Enum
 
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):
