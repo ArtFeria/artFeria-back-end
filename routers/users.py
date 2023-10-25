@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from artferia.database import get_session
 from artferia.models import User
-from artferia.schemas import UserPublic, UserSchema
+from artferia.schemas import UserPublic, UserSchema, Message
 
 router = APIRouter(prefix='/users', tags=['users'])
 
@@ -30,7 +30,7 @@ def create_user(user: UserSchema, session: Session = Depends(get_session)):
     return db_user
 
 
-@app.put('/users/{user_id}', response_model=UserPublic)
+@router.put('/{user_id}', response_model=UserPublic)
 def update_user(
     user_id: int, user: UserSchema, session: Session = Depends(get_session)
 ):
