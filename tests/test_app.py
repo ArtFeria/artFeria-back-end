@@ -1,9 +1,7 @@
-from fastapi.testclient import TestClient
-
 from artferia.app import app
 
 
-def test_read_root():
+def test_read_root(client):
     client = TestClient(app)
 
     response = client.get('/')
