@@ -10,3 +10,7 @@ class UserSchema(BaseModel):
 class UserPublic(BaseModel):
     username: str
     email: EmailStr
+
+
+class Message(BaseModel):
+    detail: str
