@@ -3,7 +3,7 @@ from sqlalchemy import select
 from artferia.models import User
 
 
-def test_create_user(session):
+def test_db_create_user(session):
     new_user = User(username='alice', password='secret', email='teste@test')
     session.add(new_user)
     session.commit()
