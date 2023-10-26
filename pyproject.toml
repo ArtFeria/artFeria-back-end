@@ -15,11 +15,16 @@ uvicorn = "^0.23.2"
 pydantic = {extras = ["email"], version = "^2.4.2"}
 pydantic-settings = "^2.0.3"
 httpx = "^0.25.0"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.6"
 
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
 pytest-cov = "^4.1.0"
+factory-boy = "^3.3.0"
+freezegun = "^1.2.2"
 
 
 [tool.poetry.group.dev.dependencies]
