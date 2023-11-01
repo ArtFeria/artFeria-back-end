@@ -14,6 +14,12 @@ class UserPublic(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class EventSchema(BaseModel):
+    name: str
+    age: str
+    description: str
+
+
 class Message(BaseModel):
     detail: str
 
