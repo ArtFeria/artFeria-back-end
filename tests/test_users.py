@@ -15,7 +15,7 @@ def test_post_create_user(client):
     }
 
 
-def test_post_user_already_created(client, user):
+def test_post_created_user(client, user):
     response = client.post(
         '/users/',
         json={
@@ -57,7 +57,7 @@ def test_update_user(client, user, token):
     }
 
 
-def test_update_user_with_wrong_user(client, other_user, token):
+def test_update_other_user(client, other_user, token):
     response = client.put(
         f'/users/{other_user.id}',
         headers={'Authorization': f'Bearer {token}'},
@@ -80,10 +80,10 @@ def test_delete_user(client, user, token):
     assert response.json() == {'detail': 'user deleted'}
 
 
-def test_delete_user_wrong_user(client, other_user, token):
+def test_delete_other_user(client, other_user, token):
     response = client.delete(
         f'/users/{other_user.id}',
         headers={'Authorization': f'Bearer {token}'},
     )
     assert response.status_code == 400
-    assert response.json() == {'detail': 'Not enough permissions'}
+    assert response.json() == {'detail': 'not enough permissions'}

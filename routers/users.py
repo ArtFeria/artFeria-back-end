@@ -21,7 +21,6 @@ def create_user(user: UserSchema, session: Session):
     db_user = session.scalar(
         select(User).where(User.username == user.username)
     )
-
     if db_user:
         raise HTTPException(
             status_code=400, detail='username already registered'
@@ -66,7 +65,6 @@ def update_user(
 def read_user(user_id: int, session: Session):
     """view one user data by his id"""
     db_user = session.scalar(select(User).where(User.id == user_id))
-
     if db_user is None:
         raise HTTPException(status_code=404, detail='user not found')
 
@@ -74,10 +72,13 @@ def read_user(user_id: int, session: Session):
 
 
 @router.delete('/{user_id}', response_model=Message)
-def delete_user(user_id: int, session: Session):
+def delete_user(user_id: int, session: Session, current_user: CurrentUser):
     """delete one user by his id"""
-    db_user = session.scalar(select(User).where(User.id == user_id))
 
+    if current_user.id != user_id:
+        raise HTTPException(status_code=400, detail='not enough permissions')
+
+    db_user = session.scalar(select(User).where(User.id == user_id))
     if db_user is None:
         raise HTTPException(status_code=404, detail='user not found')
 

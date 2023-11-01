@@ -62,7 +62,7 @@ def other_user(session):
     session.commit()
     session.refresh(user)
 
-    user.clean_password = 'senhateste231'
+    user.clean_password = password
     return user
 
 
