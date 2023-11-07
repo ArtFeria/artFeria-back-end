@@ -1,4 +1,5 @@
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Boolean, ForeignKey
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -12,6 +13,9 @@ class User(Base):
     username: Mapped[str]
     password: Mapped[str]
     email: Mapped[str]
+    organizer: Mapped[bool] = mapped_column(Boolean(), default=False)
+
+    events: Mapped[list['Event']] = relationship(back_populates='user')
 
 
 class Event(Base):
@@ -19,5 +23,8 @@ class Event(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
-    age: Mapped[str]
+    age: Mapped[int]
     description: Mapped[str]
+
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
+    user: Mapped['User'] = relationship(back_populates='events')
