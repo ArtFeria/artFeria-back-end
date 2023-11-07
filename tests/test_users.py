@@ -25,7 +25,7 @@ def test_post_created_user(client, user):
         },
     )
     assert response.status_code == 400
-    assert response.json() == {'detail': 'username already registered'}
+    assert response.json() == {'detail': 'email already registered'}
 
 
 def test_get_user(client, user):
@@ -46,6 +46,7 @@ def test_update_user(client, user, token):
             'username': 'buddie',
             'email': 'buddie@exemplo.com',
             'password': 'nova senha 321',
+            'organizer': 'True',
         },
     )
 
