@@ -26,7 +26,7 @@ async def get_current_user(
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail='Could not validate credentials',
-        headers={'WWW-Authenticate': 'Bearer"'},
+        headers={'WWW-Authenticate': 'Bearer'},
     )
 
     try:
@@ -57,6 +57,7 @@ def create_access_token(data: dict):
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
     to_encode.update({'exp': expire})
+
     encoded_jwt = jwt.encode(
         to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
     )
