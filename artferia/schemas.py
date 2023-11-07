@@ -5,6 +5,7 @@ class UserSchema(BaseModel):
     username: str
     email: EmailStr
     password: str
+    organizer: bool = False
 
 
 class UserPublic(BaseModel):
@@ -14,10 +15,19 @@ class UserPublic(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class EventLocation(BaseModel):
+    cep: int
+    number: int
+    street: str
+    complement: str | None
+
+
 class EventSchema(BaseModel):
     name: str
-    age: str
+    age: int
     description: str
+    location: EventLocation
+    organizer: int   # user_id
 
 
 class Message(BaseModel):
