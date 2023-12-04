@@ -16,3 +16,19 @@ def test_create_event(client, user, token):
         },
     )
     assert response.status_code == 201
+
+
+def test_create_random_event(client, event):
+    response = client.post(
+        '/events/',
+        json={
+
+        }
+    )
+
+# def test_events_feed(client, eventList):
+#     response = client.post(
+#         '/events/feed',
+
+#     )
+#     assert eventList == db_eventList
