@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from artferia.database import get_session
 from artferia.models import Event, User
-from artferia.schemas import EventSchema, Message
+from artferia.schemas import EventList, EventSchema, Message
 from artferia.security import get_current_user
 
 router = APIRouter(prefix='/events', tags=['events'])
@@ -39,3 +39,9 @@ def create_event(
     session.add(db_event)
     session.commit()
     return event
+
+
+@router.post('/feed', status_code=200, response_model=EventList)
+def read_events_feed(session: Session, search: str):
+    db_events = session.scalar(select(Event).where(search in Event.name))
+    return {'events': db_events}
