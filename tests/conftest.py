@@ -1,5 +1,7 @@
 import factory
+from factory import fuzzy
 import pytest
+from faker import Faker
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,7 +9,7 @@ from sqlalchemy.pool import StaticPool
 
 from artferia.app import app
 from artferia.database import get_session
-from artferia.models import Base, User
+from artferia.models import Base, Event, User
 from artferia.security import get_password_hash
 
 
@@ -75,6 +77,16 @@ def token(client, user):
     return response.json()['access_token']
 
 
+@pytest.fixture
+def event(session):
+    event = EventFactory()
+
+    session.add(event)
+    session.commit()
+    session.refresh()
+    return event
+
+
 class UserFactory(factory.Factory):
     class Meta:
         model = User
@@ -83,3 +95,23 @@ class UserFactory(factory.Factory):
     username = factory.LazyAttribute(lambda obj: f'test{obj.id}')
     email = factory.LazyAttribute(lambda obj: f'{obj.username}@test.com')
     password = factory.LazyAttribute(lambda obj: f'{obj.username}@example.com')
+
+
+class EventFactory(factory.Factory):
+    class Meta:
+        model = Event
+
+    user = UserFactory()
+    session.add(user)
+    session.commit()
+    session.refresh(user)
+    
+    fuz = fuzzy.FuzzyInteger(21)
+    fake = Faker(['en_US', 'pt_BR'])
+
+    id = factory.sequence(lambda n: n)
+    name = factory.Faker('name')
+    age = fuz.fuzz()
+    description = fake.address()
+    location = None
+    organizer = user.id   # user_id
