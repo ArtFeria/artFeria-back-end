@@ -25,6 +25,7 @@ pytest = "^7.4.2"
 pytest-cov = "^4.1.0"
 factory-boy = "^3.3.0"
 freezegun = "^1.2.2"
+faker = "^19.13.0"
 
 
 [tool.poetry.group.dev.dependencies]
