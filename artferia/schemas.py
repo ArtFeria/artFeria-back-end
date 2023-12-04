@@ -26,8 +26,12 @@ class EventSchema(BaseModel):
     name: str
     age: int
     description: str
-    location: EventLocation
+    location: EventLocation | None
     organizer: int   # user_id
+
+
+class EventList(BaseModel):
+    events: list[EventSchema]
 
 
 class Message(BaseModel):
